@@ -74,7 +74,9 @@ section.alt { background: var(--sand); }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: start; }
 .hero h1 { font-size: clamp(40px, 5.6vw, 72px); font-weight: 800; }
 .hero h1 em { font-style: normal; color: var(--coral); }
-.research { border-left: 4px solid var(--coral); padding: 4px 0 4px 14px; font-size: 17px; color: var(--ink); max-width: 64ch; }
+.hero-list { margin: 8px 0 10px; padding-left: 22px; display: flex; flex-direction: column; gap: 4px; }
+.hero-list b { color: var(--ink); }
+.research {border-left: 4px solid var(--coral); padding: 4px 0 4px 14px; font-size: 17px; color: var(--ink); max-width: 64ch; }
 .research a { font-size: 14px; white-space: nowrap; }
 .wa-stats {border: 2px solid var(--ink); border-radius: 18px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; background: var(--teal-wash); }
 .wa-stats-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); }
@@ -299,7 +301,17 @@ footer { padding: 28px 0; color: #9FC2C0; font-size: 14px; background: var(--ink
     <div style="display:flex;flex-direction:column;gap:22px">
       <span class="q">Press play and watch ZDM ChatCart work.</span>
       <h1>Small businesses already sell on WhatsApp. ZDM ChatCart makes them <em>get paid</em> without the chaos.</h1>
-      <p class="lead measure">One system joins a shop website, WhatsApp ordering and simple payment links (processed by Fygaro), turns Instagram comments into orders, and keeps the feed busy with monthly videos. Built by ZDMINC in Barbados, for Caribbean businesses.</p>
+      <div class="lead measure">
+        <p>One system that gives a business:</p>
+        <ul class="hero-list">
+          <li><b>A shop website</b> where customers browse and pick products</li>
+          <li><b>WhatsApp ordering</b>, so orders arrive in the chat they already use</li>
+          <li><b>Payment links</b> customers tap to pay by card (processed by Fygaro)</li>
+          <li><b>Instagram comments turned into orders</b> automatically</li>
+          <li><b>Fresh videos every month</b> to keep their feed active</li>
+        </ul>
+        <p>Built by ZDMINC in Barbados, for Caribbean businesses.</p>
+      </div>
       <p class="research"><b>The research:</b> 86% of internet users in Barbados use WhatsApp, and across the region the figure runs from 86% to 91%. Customers are already in the chat; ZDM ChatCart turns those conversations into paid orders. <a href="https://www.hoperesearchgroup.com/blog/caribbean-media-consumption-advertising-research" target="_blank" rel="noopener">Hope Research Group, 2026</a></p>
       <div class="wa-stats" aria-label="Share of internet users who use WhatsApp">
         <p class="wa-stats-title">Share of internet users on WhatsApp</p>
