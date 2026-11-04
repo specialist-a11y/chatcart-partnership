@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZDM ChatCart for Partners | ZDMINC</title>
+<meta name="description" content="How ZDM ChatCart works and makes money: WhatsApp ordering, payment systems set up for each business, Instagram comment-to-order, monthly videos. Built by ZDMINC in Barbados.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="ZDM ChatCart for Partners">
+<meta property="og:description" content="We set up the payment system for Caribbean small businesses, then turn WhatsApp and Instagram into paid, tracked orders.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/site-hero.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect x='1' y='1' width='32' height='32' rx='6' fill='%233D8BFF'/%3E%3Cpath d='M10 10h14L10 24h14' fill='none' stroke='%230B0F0E' stroke-width='3.2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a guided walk. Each section asks one question a partner has, answers it with something to click, then a sketch. */
+:root {
+  --ink: #0B0F0E;
+  --ink-soft: #3A4541;
+  --teal: #1D5FD1;
+  --teal-wash: #EAF2FF;
+  --coral: #C9472B;
+  --sand: #F6F1E9;
+  --paper: #FFFFFF;
+  --line: #DDE3E0;
+  --display: "Bricolage Grotesque", "DM Sans", system-ui, sans-serif;
+  --body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hand: "Caveat", "Comic Sans MS", cursive;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+img { max-width: 100%; display: block; }
+a { color: var(--teal); }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--display); letter-spacing: -0.02em; line-height: 1.05; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(32px, 4.2vw, 50px); font-weight: 800; }
+h3 { font-size: 22px; font-weight: 700; }
+p { margin: 0; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+.measure { max-width: 64ch; }
+.q { font-family: var(--hand); font-size: 30px; color: var(--coral); line-height: 1; transform: rotate(-1.5deg); display: inline-block; }
+.lead { font-size: 19px; color: var(--ink-soft); }
+section { padding: 88px 0; }
+section.alt { background: var(--sand); }
+.head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 10px 20px; border-radius: 12px; border: 2px solid var(--ink); background: var(--ink); color: #fff; font: 700 16px var(--body); cursor: pointer; text-decoration: none; }
+.btn:hover { color: #fff; background: #1d4746; }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--teal-wash); color: var(--ink); }
+.btn.coral { background: var(--coral); border-color: var(--coral); }
+.btn.coral:hover { background: #ad3a21; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 2px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 999px; padding: 8px 16px; font: 700 15px var(--body); cursor: pointer; min-height: 44px; }
+.chip[aria-selected="true"], .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.chip:hover { border-color: var(--teal); }
+
+/* Top bar */
+.top { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 12px; padding-bottom: 12px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; font: 800 22px var(--display); color: var(--ink); text-decoration: none; }
+.brand small { font: 500 14px var(--body); color: var(--ink-soft); }
+.toc { display: flex; flex-wrap: wrap; gap: 4px; }
+.toc a { text-decoration: none; color: var(--ink); font-weight: 600; font-size: 14px; padding: 6px 10px; border-radius: 8px; }
+.toc a:hover { background: var(--teal-wash); }
+
+/* Hero simulator */
+.hero { padding: 56px 0 72px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+.hero h1 { font-size: clamp(40px, 5.6vw, 72px); font-weight: 800; }
+.hero h1 em { font-style: normal; color: var(--coral); }
+.sim-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.steps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 6px; }
+.steps button { border: 0; background: var(--line); height: 8px; border-radius: 8px; cursor: pointer; padding: 0; }
+.steps button[aria-current="step"], .steps button.done { background: var(--teal); }
+.step-label { font-weight: 700; }
+.log { border: 2px solid var(--ink); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 10px; background: var(--paper); }
+.log h3 { font-size: 16px; text-transform: uppercase; letter-spacing: .06em; font-family: var(--body); color: var(--ink-soft); }
+.log ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; }
+.log li.new { animation: pop .5s ease; }
+@keyframes pop { from { background: #FFF1C9; } to { background: transparent; } }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.tile { background: var(--teal-wash); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px; }
+.tile b { font: 800 26px var(--display); font-variant-numeric: tabular-nums; }
+.tile span { font-size: 13px; color: var(--ink-soft); }
+.tile.flash { animation: flash .9s ease; }
+@keyframes flash { 0% { background: #FDE2C9; } 100% { background: var(--teal-wash); } }
+
+.phone { width: 330px; max-width: 100%; height: 640px; margin: 0 auto; background: var(--ink); border-radius: 46px; padding: 12px; box-shadow: 0 30px 60px rgba(16,48,47,.25); }
+.screen { height: 100%; border-radius: 35px; overflow: hidden; background: #EFE9DF; display: flex; flex-direction: column; font-size: 14px; line-height: 1.4; position: relative; }
+.bar { background: var(--teal); color: #fff; padding: 22px 16px 12px; display: flex; align-items: center; gap: 10px; }
+.bar .av { width: 34px; height: 34px; border-radius: 50%; background: #fff; color: var(--teal); display: grid; place-items: center; font-weight: 800; font-size: 13px; }
+.chat { flex: 1; padding: 12px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+.b { padding: 8px 11px; border-radius: 12px; max-width: 84%; animation: rise .35s ease; }
+@keyframes rise { from { transform: translateY(8px); opacity: .3; } to { transform: none; opacity: 1; } }
+.b.me { align-self: flex-end; background: #DCF8C6; border-bottom-right-radius: 4px; }
+.b.them { align-self: flex-start; background: #fff; border-bottom-left-radius: 4px; }
+.paylink { margin-top: 6px; background: var(--ink); color: #fff; border-radius: 9px; padding: 9px; font-weight: 700; display: flex; justify-content: space-between; }
+.shop-head { background: var(--teal); color: #fff; padding: 26px 16px 14px; }
+.shop-head b { font: 800 21px var(--display); display: block; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 12px; background: #fff; flex: 1; align-content: start; }
+.prod { border: 1.5px solid var(--line); border-radius: 12px; padding: 8px; display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
+.prod i { display: block; aspect-ratio: 1 / 1; border-radius: 8px; }
+.cartbar { background: var(--ink); color: #fff; padding: 12px 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.cartbar span.cta { background: var(--coral); padding: 9px 12px; border-radius: 10px; font-weight: 700; }
+.pay { background: #F5F6F7; flex: 1; padding: 22px 16px; display: flex; flex-direction: column; gap: 12px; }
+.pay .amt { font: 800 34px var(--display); }
+.field { background: #fff; border: 1.5px solid #D7DCDF; border-radius: 10px; padding: 10px; color: #6B7F7E; }
+.paybtn { background: var(--ink); color: #fff; text-align: center; border-radius: 12px; padding: 12px; font-weight: 700; }
+.paid-badge { align-self: center; background: var(--teal); color: #fff; padding: 8px 14px; border-radius: 999px; font-weight: 700; animation: rise .35s ease; }
+
+
+/* Extra simulator screens */
+.studio { background: #F6F1E9; flex: 1; display: flex; flex-direction: column; }
+.studio-top { background: var(--ink); color: #fff; padding: 22px 14px 12px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
+.studio-top small { background: #F2A48F; color: var(--ink); border-radius: 999px; padding: 2px 8px; font-size: 11px; }
+.studio-body { padding: 12px; display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+.up { background: #fff; border-radius: 10px; padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; }
+.up .barx { height: 5px; border-radius: 5px; background: #D7E4E3; overflow: hidden; }
+.up .barx i { display: block; height: 100%; background: var(--teal); }
+.vgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.vcard { background: #fff; border-radius: 10px; overflow: hidden; border: 2px solid transparent; font-size: 12px; }
+.vcard.on { border-color: var(--teal); }
+.vcard.off { opacity: .55; }
+.vcard .th { height: 74px; display: grid; place-items: center; color: #fff; font-weight: 700; position: relative; }
+.vcard .th em { position: absolute; top: 6px; left: 6px; background: rgba(0,0,0,.55); font-style: normal; font-size: 10px; padding: 1px 6px; border-radius: 999px; }
+.vcard .meta { padding: 6px 8px; display: flex; justify-content: space-between; align-items: center; gap: 4px; }
+.vcard .meta b { font-size: 11px; }
+.tag-use { background: var(--teal); color: #fff; border-radius: 999px; padding: 1px 7px; font-size: 10px; font-weight: 700; }
+.tag-skip { background: #EEF0F0; color: #4A5C5B; border-radius: 999px; padding: 1px 7px; font-size: 10px; font-weight: 700; }
+.cal { display: flex; flex-direction: column; gap: 6px; }
+.cal div { background: #fff; border-radius: 10px; padding: 8px 10px; display: grid; grid-template-columns: 42px 30px minmax(0, 1fr); gap: 8px; align-items: center; }
+.cal i { display: block; width: 30px; height: 38px; border-radius: 5px; }
+.feed { background: #fff; flex: 1; display: flex; flex-direction: column; }
+.feed-top { padding: 22px 14px 10px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #EEE; font-weight: 700; }
+.feed-top .av { width: 30px; height: 30px; border-radius: 50%; background: var(--teal); color: #fff; display: grid; place-items: center; font-size: 11px; }
+.feed .media { height: 250px; display: grid; place-items: center; position: relative; }
+.feed .media span { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,.9); display: grid; place-items: center; }
+.feed .media em { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,.55); color: #fff; font-style: normal; font-size: 11px; padding: 2px 8px; border-radius: 999px; }
+.feed .cap { padding: 10px 14px; font-size: 13px; display: flex; flex-direction: column; gap: 6px; }
+.feed .cta { align-self: flex-start; background: var(--coral); color: #fff; border-radius: 8px; padding: 6px 10px; font-weight: 700; font-size: 12px; }
+.cmt { padding: 6px 14px; font-size: 13px; border-top: 1px solid #F2F2F2; }
+.cmt.hi { background: #FFF6E5; }
+.rank { display: flex; flex-direction: column; gap: 6px; }
+.rank div { background: #fff; border-radius: 10px; padding: 8px 10px; display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 8px; align-items: center; }
+.rank i { display: block; width: 30px; height: 38px; border-radius: 5px; }
+.rank .w { height: 5px; border-radius: 5px; background: var(--teal); margin-top: 4px; }
+.notice { align-self: center; background: #FFF6E5; color: #7A4300; font-size: 12px; padding: 4px 10px; border-radius: 8px; }
+
+/* Story tabs */
+.story { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 36px; align-items: center; }
+.sketch { border: 2px solid var(--ink); border-radius: 20px; overflow: hidden; background: #fff; }
+.story-text { display: flex; flex-direction: column; gap: 14px; }
+.story-text ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+
+/* Before/after */
+.ba { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 36px; align-items: center; }
+.keyidea { background: var(--teal-wash); border-left: 5px solid var(--teal); border-radius: 12px; padding: 14px 16px; font-size: 18px; line-height: 1.5; max-width: 60ch; }
+.setup-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.setup-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: s; }
+.setup-steps li { counter-increment: s; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; background: #fff; border: 1.5px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+.setup-steps li::before { content: counter(s); width: 32px; height: 32px; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 800; display: grid; place-items: center; }
+.setup-steps b { display: block; }
+.setup-steps span { color: var(--ink-soft); font-size: 15px; }
+.fees { background: #0B0F0E; color: #fff; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+.fees table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.fees th, .fees td { text-align: left; padding: 9px 4px; border-bottom: 1px solid rgba(255,255,255,.15); }
+.fees td:last-child, .fees th:last-child { text-align: right; white-space: nowrap; }
+.fees small { color: #C4CCC8; line-height: 1.5; }
+.fees .big { font-family: var(--display); font-size: 40px; font-weight: 800; color: #3D8BFF; line-height: 1; }
+@media (max-width: 860px) { .setup-grid { grid-template-columns: 1fr; } }
+.contrast { display: flex; flex-direction: column; gap: 14px; }
+.contrast div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; padding-bottom: 12px; border-bottom: 1px dashed var(--line); }
+.contrast dt, .contrast b { font-weight: 700; }
+
+/* Catalog explorer */
+.explorer { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 40px; align-items: start; }
+.explorer .frame { border-radius: 26px; overflow: hidden; border: 2px solid var(--ink); background: #fff; }
+.explain { display: flex; flex-direction: column; gap: 16px; }
+.explain .when { background: var(--teal-wash); border-radius: 14px; padding: 14px 16px; }
+.explain .when b { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--teal); }
+
+/* Features showcase */
+.show { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 28px; align-items: start; }
+.show-tabs { display: flex; flex-direction: column; gap: 8px; }
+.show-tabs button { text-align: left; border: 2px solid var(--line); background: var(--paper); border-radius: 14px; padding: 12px 14px; cursor: pointer; font: 500 15px var(--body); color: var(--ink); display: flex; flex-direction: column; gap: 2px; }
+.show-tabs button b { font: 700 17px var(--display); }
+.show-tabs button[aria-selected="true"] { border-color: var(--teal); background: var(--teal-wash); }
+.show-panel { border: 2px solid var(--ink); border-radius: 20px; overflow: hidden; background: #fff; }
+.show-panel figcaption { padding: 14px 18px; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink-soft); }
+.show-panel figure { margin: 0; }
+
+/* Economics */
+.econ { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 36px; align-items: start; }
+.plans { display: flex; flex-direction: column; gap: 10px; }
+.plan { display: grid; grid-template-columns: minmax(0, 1fr) 150px 64px; gap: 14px; align-items: center; background: #fff; border: 1.5px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+.plan label { display: flex; flex-direction: column; font-weight: 700; }
+.plan label span { font-weight: 400; font-size: 14px; color: var(--ink-soft); }
+.plan input[type=range] { width: 100%; accent-color: var(--teal); }
+.plan output { font: 800 22px var(--display); text-align: right; font-variant-numeric: tabular-nums; }
+.result { background: var(--ink); color: #fff; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 18px; position: sticky; top: 90px; }
+.result .big { font: 800 clamp(36px, 4vw, 52px) var(--display); font-variant-numeric: tabular-nums; line-height: 1; }
+.result .row3 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.result .row3 div { background: rgba(255,255,255,.08); border-radius: 12px; padding: 12px; }
+.result .row3 b { display: block; font: 800 24px var(--display); font-variant-numeric: tabular-nums; }
+.result small { color: #BFD6D5; font-size: 13px; line-height: 1.5; }
+.mix { display: flex; height: 14px; border-radius: 8px; overflow: hidden; background: rgba(255,255,255,.12); }
+.mix span { display: block; height: 100%; transition: width .3s ease; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; color: #DCEBEA; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: middle; }
+
+/* People */
+.people { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+.person { background: #fff; border: 1.5px solid var(--line); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+.person .tag { align-self: flex-start; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 4px 10px; border-radius: 999px; background: var(--teal-wash); color: #154AA6; }
+.person.us { border: 2px solid var(--coral); }
+.person.us .tag { background: #FBE3DC; color: #8C2F1C; }
+.person ul { margin: 0; padding-left: 18px; font-size: 15px; display: flex; flex-direction: column; gap: 4px; }
+
+/* Roadmap */
+.road { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.phase { border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 10px; background: #fff; border: 1.5px solid var(--line); }
+.phase.now { border: 2px solid var(--teal); }
+.phase h3 { font-size: 19px; }
+.phase .when { font-size: 13px; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .06em; }
+.item { display: flex; gap: 8px; align-items: flex-start; font-size: 15px; }
+.pill { flex: none; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; margin-top: 3px; }
+.pill.built { background: var(--teal); color: #fff; }
+.pill.designed { background: #FFF1DC; color: #7A4300; }
+.pill.next { background: #EEF0F0; color: #4A5C5B; }
+
+/* FAQ */
+.faq { display: flex; flex-direction: column; gap: 10px; max-width: 860px; }
+details { background: #fff; border: 1.5px solid var(--line); border-radius: 14px; padding: 4px 18px; }
+details[open] { border-color: var(--teal); }
+summary { cursor: pointer; font-weight: 700; font-size: 18px; padding: 12px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font: 800 22px var(--display); color: var(--teal); }
+details[open] summary::after { content: "–"; }
+details p { padding: 0 0 16px; color: var(--ink-soft); }
+
+.end { background: var(--ink); color: #fff; }
+.end h2 { color: #fff; }
+.end .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 28px; }
+.end .links a { background: rgba(255,255,255,.07); border: 1.5px solid rgba(255,255,255,.2); border-radius: 16px; padding: 18px; color: #fff; text-decoration: none; display: flex; flex-direction: column; gap: 4px; }
+.end .links a:hover { background: rgba(255,255,255,.14); color: #fff; }
+.end .links b { font: 700 19px var(--display); }
+.end .links span { color: #BFD6D5; font-size: 15px; }
+footer { padding: 28px 0; color: #9FC2C0; font-size: 14px; background: var(--ink); border-top: 1px solid rgba(255,255,255,.12); }
+
+@media (max-width: 920px) {
+  .hero-grid, .story, .ba, .explorer, .show, .econ { grid-template-columns: minmax(0, 1fr); }
+  .road { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .result { position: static; }
+  .toc { display: none; }
+}
+@media (max-width: 520px) {
+  .road { grid-template-columns: minmax(0, 1fr); }
+  .plan { grid-template-columns: minmax(0, 1fr) 54px; }
+  .plan input[type=range] { grid-column: 1 / -1; grid-row: 2; }
+  .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  section { padding: 64px 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg width="30" height="30" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" rx="6" fill="#3D8BFF"/><path d="M10 10h14L10 24h14" fill="none" stroke="#0B0F0E" stroke-width="3.2"/></svg>
+      ZDM ChatCart <small>for partners</small>
+    </a>
+    <nav class="toc" aria-label="Sections">
+      <a href="#key-idea">Key idea</a><a href="#why">Why</a><a href="#loop">How it works</a><a href="#catalog">WhatsApp catalog</a><a href="#product">What clients get</a><a href="#money">The numbers</a><a href="#roles">Who does what</a><a href="#roadmap">Roadmap</a><a href="#questions">Questions</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <span class="q">Press play and watch ZDM ChatCart work.</span>
+      <h1>Small businesses already sell on WhatsApp. ZDM ChatCart makes them <em>get paid</em> without the chaos.</h1>
+      <p class="lead measure">One system joins a shop website, WhatsApp ordering and simple payment links (processed by Fygaro), turns Instagram comments into orders, and keeps the feed busy with monthly videos. Built by ZDMINC in Barbados, for Caribbean businesses.</p>
+      <p class="keyidea"><b>The key idea:</b> we set up the payment system on each business’s behalf, plus WhatsApp, Instagram and their shop, for a one-time setup fee. They just start selling.</p>
+      <div class="chips" role="tablist" aria-label="Choose what to watch" id="scenTabs"></div>
+      <div class="sim-controls">
+        <button class="btn coral" id="play" type="button">Play</button>
+        <button class="btn ghost" id="next" type="button">Next step</button>
+        <button class="btn ghost" id="restart" type="button">Start over</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="steps" id="stepbar" role="group" aria-label="Order steps"></div>
+        <p><span class="step-label" id="stepTitle"></span> <span id="stepText" style="color:var(--ink-soft)"></span></p>
+      </div>
+      <div class="log" aria-live="polite">
+        <h3>Behind the scenes, ZDM ChatCart&hellip;</h3>
+        <ol id="log"></ol>
+        <div class="tiles">
+          <div class="tile" id="t1"><b id="v1"></b><span id="l1"></span></div>
+          <div class="tile" id="t2"><b id="v2"></b><span id="l2"></span></div>
+          <div class="tile" id="t3"><b id="v3"></b><span id="l3"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="phone" aria-label="Phone showing the current step"><div class="screen" id="screen"></div></div>
+  </div>
+</section>
+
+<section id="key-idea">
+  <div class="wrap">
+    <div class="head"><span class="q">What’s the one thing that makes this sell?</span><h2>We set up the payment system for them</h2><p class="lead measure">Most small businesses never take card payments because the setup is confusing: merchant applications, documents, keys, webhooks. ZDMINC does all of it on the client’s behalf, connects it to their shop and WhatsApp, and proves it works with a real payment before launch.</p></div>
+    <div class="setup-grid">
+      <ol class="setup-steps">
+        <li><div><b>Apply for the payment account, with them</b><span>We prepare the application. The owner provides business documents and signs where the provider needs their signature. Payments always go into the business’s own account.</span></div></li>
+        <li><div><b>Connect it to ZDM ChatCart</b><span>Payment links with the exact total, automatic paid confirmation, receipts on WhatsApp.</span></div></li>
+        <li><div><b>Set up WhatsApp, Instagram and the domain</b><span>WhatsApp Business number and Meta verification, Instagram and Facebook connected, their own domain pointed at the shop.</span></div></li>
+        <li><div><b>Load products and build the shop page</b><span>Catalog, prices, photos, hours, pickup and delivery details.</span></div></li>
+        <li><div><b>Test a live payment, then launch</b><span>We place a real order, pay it, and check the receipt lands. Then they start selling.</span></div></li>
+      </ol>
+      <div class="fees">
+        <small style="text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#3D8BFF">One-time setup fee, in BBD</small>
+        <table>
+          <thead><tr><th>Plan</th><th>Monthly</th><th>Setup</th></tr></thead>
+          <tbody>
+            <tr><td>Starter <small style="display:block;color:#C4CCC8">includes 2 image posts a month</small></td><td>$150</td><td><b>$1,500</b></td></tr>
+            <tr><td>Growth</td><td>$300</td><td><b>$1,500</b></td></tr>
+            <tr><td>Pro</td><td>$500</td><td><b>$1,500</b></td></tr>
+            <tr><td>Growth + Video</td><td>$1,200</td><td><b>$1,500</b></td></tr>
+            <tr><td>All-in-One</td><td>$650</td><td><b>$2,500</b></td></tr>
+            <tr><td>All-in-One + Video</td><td>$1,450</td><td><b>$2,500</b></td></tr>
+          </tbody>
+        </table>
+        <div><div class="big">$14,000</div><small>in setup fees from the first 8 clients (6 at $1,500, 2 at $2,500), before a single monthly payment. It covers the hands-on onboarding time and funds the pilot.</small></div>
+        <small>The client still pays their own payment provider (Fygaro) plan and card fees directly. ZDMINC never holds their money.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="why">
+  <div class="wrap">
+    <div class="head"><span class="q">Why does this need to exist?</span><h2>Selling on WhatsApp works. Getting paid on WhatsApp is a mess.</h2></div>
+    <div class="ba">
+      <div class="sketch"><img src="img/sk-before.jpg" alt="Sketch: today the owner is buried in photo requests, bank details and payment screenshots. With ZDM ChatCart: website, WhatsApp, one link, paid." width="1200" height="675"></div>
+      <div class="contrast">
+        <div><b>Today</b><span>Owners send photos one by one, type out prices, share bank details, then wait for a payment screenshot and check it by hand.</span></div>
+        <div><b>The gap</b><span>Fygaro already offers payment links for WhatsApp, but nothing ties the website, the chat and the payment into one order. WhatsApp's own in-chat payments aren't available in the Caribbean.</span></div>
+        <div><b>ZDM ChatCart</b><span>Every order gets a code, a secure payment link for the exact total, confirms itself when paid and sends a receipt. The owner keeps chatting the way they already do.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="loop">
+  <div class="wrap">
+    <div class="head"><span class="q">So how does it actually work?</span><h2>One loop, five moves</h2><p class="lead measure">Tap each step. The little black character does the work so the owner doesn't have to.</p></div>
+    <div class="chips" role="tablist" aria-label="ZDM ChatCart loop" id="loopTabs" style="margin-bottom:24px"></div>
+    <div class="story" id="loopPanel" role="tabpanel"></div>
+  </div>
+</section>
+
+<section class="alt" id="catalog">
+  <div class="wrap">
+    <div class="head"><span class="q">What will customers see in WhatsApp?</span><h2>The catalog shows up six ways in a chat</h2><p class="lead measure">Products live once in ZDM ChatCart and are pushed to WhatsApp automatically. Pick a format.</p></div>
+    <div class="chips" role="tablist" aria-label="WhatsApp catalog formats" id="waTabs" style="margin-bottom:24px"></div>
+    <div class="explorer" id="waPanel" role="tabpanel"></div>
+  </div>
+</section>
+
+<section id="product">
+  <div class="wrap">
+    <div class="head"><span class="q">What does a client actually get?</span><h2>Everything a small shop needs, in one login</h2></div>
+    <div class="show">
+      <div class="show-tabs" role="tablist" aria-label="Product features" id="showTabs"></div>
+      <div class="show-panel" id="showPanel" role="tabpanel"></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="money">
+  <div class="wrap">
+    <div class="head"><span class="q">Does it make money?</span><h2>Recurring revenue from day one</h2><p class="lead measure">Move the sliders to try a client mix. Prices are ZDMINC's suggested starting points, in Barbados dollars, and are still to be tested.</p></div>
+    <div class="econ">
+      <div class="plans" id="plans"></div>
+      <div class="result" aria-live="polite">
+        <div><small>Monthly recurring revenue</small><div class="big" id="mrr">BBD $0</div></div>
+        <div class="mix" id="mix" aria-hidden="true"></div>
+        <div class="legend" id="legend"></div>
+        <div class="row3">
+          <div><small>Per year, recurring</small><b id="arr">$0</b></div>
+          <div><small>One-time setup fees (payments set up for them)</small><b id="setup">$0</b></div>
+          <div><small>Clients</small><b id="clients">0</b></div>
+          <div><small>Average per client, monthly</small><b id="avg">$0</b></div>
+        </div>
+        <small>Every plan includes 1,000 contacts, then BBD $50 a month per extra 1,000. Clients pay their own payment-provider plan (Fygaro), WhatsApp message fees and ad spend directly, so ZDM ChatCart revenue is not reduced by them. Costs to run ZDM ChatCart (hosting, AI, editor and videographer time) are not deducted here.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="roles">
+  <div class="wrap">
+    <div class="head"><span class="q">Who does what?</span><h2>Five players, one system</h2></div>
+    <div class="people">
+      <div class="person us"><span class="tag">Builds and runs it</span><h3>ZDMINC</h3><ul><li>Builds and hosts ZDM ChatCart</li><li>Sets up each client's site, domain, catalog and connections</li><li>Creates image posts for every client (from 2 a month on Starter)</li><li>Shoots and edits monthly videos</li><li>Marketing support and reporting</li></ul></div>
+      <div class="person"><span class="tag">Uses it</span><h3>The business</h3><ul><li>Adds products and prices</li><li>Chats with customers as usual</li><li>Approves posts and picks videos in WhatsApp</li><li>Keeps 100% of sales, paid straight to them</li></ul></div>
+      <div class="person"><span class="tag">Payments</span><h3>Fygaro</h3><ul><li>The secure payment page and card processing</li><li>Confirms each payment to ZDM ChatCart</li><li>Each business has its own account</li></ul></div>
+      <div class="person"><span class="tag">Channels</span><h3>Meta</h3><ul><li>WhatsApp Business messaging and catalog</li><li>Instagram comments, DMs, posting and ads</li><li>Approves ZDM ChatCart as a technology provider</li></ul></div>
+      <div class="person"><span class="tag">Buys</span><h3>The customer</h3><ul><li>Browses the site or the WhatsApp catalog</li><li>Orders in a chat they already use</li><li>Pays by card on a secure page</li></ul></div>
+    </div>
+    <div class="sketch" style="margin-top:28px"><img src="img/sk-saas.jpg" alt="Sketch: WhatsApp, Instagram, Fygaro, website, Meta Ads and Claude AI plug into the ZDM ChatCart CRM, which runs many businesses, each with its data locked." width="1200" height="675"></div>
+  </div>
+</section>
+
+<section class="alt" id="roadmap">
+  <div class="wrap">
+    <div class="head"><span class="q">Where is it today?</span><h2>The core system is built. Next is a real pilot.</h2></div>
+    <div class="road">
+      <div class="phase now"><span class="when">Built</span><h3>Sell, get paid, run it</h3>
+        <div class="item"><span class="pill built">Built</span>Shop site, cart, Order on WhatsApp, own domain</div>
+        <div class="item"><span class="pill built">Built</span>WhatsApp bot, payment links, auto-confirmed payments, receipt images</div>
+        <div class="item"><span class="pill built">Built</span>Client CRM: Today insights, inbox, orders, customers, products, billing, support</div>
+        <div class="item"><span class="pill built">Built</span>ZDMINC admin: plans, invoices, upgrades, support, WhatsApp, video uploads</div>
+        <div class="item"><span class="pill built">Built</span>Ads with approvals, ad wallet, Meta Pixel and sales tracking</div>
+        <div class="item"><span class="pill built">Built</span>Short links, Instagram connect, comment-to-DM auto-replies</div>
+        <div class="item"><span class="pill built">Built</span>Works on phones throughout</div>
+      </div>
+      <div class="phase"><span class="when">Next</span><h3>Pilot</h3>
+        <div class="item"><span class="pill next">To do</span>Meta app review for WhatsApp and Instagram permissions</div>
+        <div class="item"><span class="pill next">To do</span>Connect a real payment account, WhatsApp number and domain</div>
+        <div class="item"><span class="pill next">To do</span>30-day pilot with one business</div>
+        <div class="item"><span class="pill designed">Designed</span>WhatsApp catalog sync</div>
+      </div>
+      <div class="phase"><span class="when">Then</span><h3>Grow the client</h3>
+        <div class="item"><span class="pill designed">Designed</span>Abandoned cart reminders</div>
+        <div class="item"><span class="pill next">To do</span>Bookings for service businesses</div>
+        <div class="item"><span class="pill next">To do</span>Instagram DMs in the inbox</div>
+        <div class="item"><span class="pill designed">Designed</span>Marketing autopilot and weekly approvals</div>
+        <div class="item"><span class="pill designed">Designed</span>Website templates and section editor</div>
+      </div>
+      <div class="phase"><span class="when">Later</span><h3>Scale as SaaS</h3>
+        <div class="item"><span class="pill next">To do</span>Self sign-up and onboarding wizard</div>
+        <div class="item"><span class="pill next">To do</span>Automatic Instagram posting</div>
+        <div class="item"><span class="pill next">To do</span>Automated video editing</div>
+        <div class="item"><span class="pill next">To do</span>More payment providers beside Fygaro</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="questions">
+  <div class="wrap">
+    <div class="head"><span class="q">What could go wrong?</span><h2>Straight answers to the hard questions</h2></div>
+    <div class="faq">
+      <details><summary>Why not just use Shopify or Fygaro Shops?</summary><p>They are good stores, but neither ties the store to a WhatsApp conversation with order codes, automatic payment confirmation in the chat, and marketing built from the same catalog. ZDM ChatCart is built around how Caribbean customers already buy: in WhatsApp. A client already running a Fygaro store can keep it.</p></details>
+      <details><summary>What exactly does the setup fee pay for?</summary><p>Doing the hard part for the client: the payment account application and connection, WhatsApp Business number and Meta verification, Instagram and Facebook connection, domain, products and shop page, and a live test payment before launch. $1,500 one time, or $2,500 for All-in-One plans, which also need the ad account, Pixel and marketing set up.</p></details>
+      <details><summary>Does money pass through ZDM ChatCart?</summary><p>No. Each business has its own Fygaro account, so customer payments go straight to them. ZDM ChatCart only receives Fygaro's signed confirmation that an order was paid. ZDM ChatCart's own revenue is the monthly plan and setup fee.</p></details>
+      <details><summary>What does each client need from Fygaro and Meta?</summary><p>A Fygaro plan that allows fixed-amount payment links and payment notifications (Pro or above), a WhatsApp Business number connected through Meta, and an Instagram Business or Creator account linked to a Facebook Page. Meta verification and app review can take weeks, so they start on day one of each client.</p></details>
+      <details><summary>Are there hidden running costs for clients?</summary><p>WhatsApp charges per message for business-initiated messages, such as reminders outside the 24-hour reply window and promotional templates. Ad spend is set by the owner with a weekly cap. Both are paid by the client directly and shown up front.</p></details>
+      <details><summary>What if WhatsApp launches in-chat payments in the Caribbean?</summary><p>ZDM ChatCart is the catalog, order, CRM and marketing layer. Payment is one connector inside it, so a new payment method can plug in beside Fygaro without rebuilding.</p></details>
+      <details><summary>Can customers tap links on Instagram posts?</summary><p>Not in captions or comments: Instagram shows those as plain text. Links work in the bio, Story link stickers, ads and DMs. That is why ZDM ChatCart uses comment-to-DM: someone comments a keyword, the shop replies publicly and sends the link by DM, using Instagram’s official private replies. Each keyword’s link counts clicks and sales.</p></details>
+      <details><summary>Does it work for service businesses?</summary><p>Partly today. Fixed-price services, packages and deposits (a full set of nails, a deep clean, a photo session deposit) work like products: order on WhatsApp, pay by link, get a receipt. Appointments, staff calendars, time slots and reminders are the next build, as a Bookings option.</p></details>
+      <details><summary>How is customer data protected?</summary><p>Each business's orders, customers and keys are separated at the database level, so one client can never see another's data. Payment and messaging keys are stored server-side only and are never sent to the browser.</p></details>
+      <details><summary>What does the pilot prove?</summary><p>Over 30 days with one business that already takes WhatsApp orders: orders per week, time from first message to payment, how many payment links go unpaid, and hours of admin saved. That becomes the case study for the next five clients.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="end" id="more">
+  <div class="wrap">
+    <span class="q" style="color:#F2A48F">Ready to talk?</span>
+    <h2 style="margin-top:12px">Let’s build this together</h2>
+    <div class="links">
+      <a href="https://zdminc.com"><b>Talk to ZDMINC</b><span>Book a call about partnering, piloting with a business, or investing</span></a>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap">© 2026 ZDMINC, Barbados. ZDM ChatCart by ZDMINC. Screens show an invented example business, Island Crumb Bakery. Prices are suggestions to test. Updated 4 November 2026.</div></footer>
+
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+
+  /* ---------- Hero simulator: several scenarios ---------- */
+  const prod = (name, price, color, extra) => `<div class="prod"><i style="background:${color}"></i><b>${name}</b><span>BBD $${price}${extra || ''}</span></div>`;
+  const chatTop = (name, sub, av, bg) => `<div class="bar" style="background:${bg || 'var(--teal)'}"><div class="av" style="color:${bg || 'var(--teal)'}">${av || 'IC'}</div><div><b>${name || 'Island Crumb Bakery'}</b><div style="font-size:12px;opacity:.9">${sub || 'Business account'}</div></div></div>`;
+  const cc = (b) => chatTop('ZDM ChatCart', 'Your business assistant', 'CC', 'var(--ink)') + `<div class="chat">${b}</div>`;
+  const ic = (b) => chatTop() + `<div class="chat">${b}</div>`;
+  const me = (t) => `<div class="b me">${t}</div>`;
+  const them = (t) => `<div class="b them">${t}</div>`;
+  const payl = (amt) => `<div class="paylink"><span>Secure checkout</span><span>$${amt}</span></div>`;
+  const summary = '<b>Order IC-1048</b><br>2 x Coconut sweetbread<br>1 x Black cake<br><b>Total BBD $90.00</b>';
+  const studio = (title, body, who) => `<div class="studio"><div class="studio-top"><span>${title}</span><small>${who || 'ZDMINC team'}</small></div><div class="studio-body">${body}</div></div>`;
+  const V = [
+    { t: 'Slicing the black cake', len: '6s', c: '#5B3A2E' }, { t: 'Sweetbread oven to box', len: '15s', c: '#C99A5B' },
+    { t: 'Meet the baker', len: '30s', c: '#1D5FD1' }, { t: 'Salt bread steam', len: '6s', c: '#E0B866' },
+    { t: 'Cassava pone close-up', len: '15s', c: '#B9772E' }, { t: 'Christmas cake orders', len: '30s', c: '#8C2F1C' },
+  ];
+  const vcards = (picks) => `<div class="vgrid">${V.map((v, i) => { const p = picks ? picks[i] : ''; return `<div class="vcard ${p === 'u' ? 'on' : p === 's' ? 'off' : ''}"><div class="th" style="background:${v.c}"><em>${v.len}</em>&#9658;</div><div class="meta"><b>${v.t}</b>${p === 'u' ? '<span class="tag-use">Use</span>' : p === 's' ? '<span class="tag-skip">Skip</span>' : ''}</div></div>`; }).join('')}</div>`;
+  const post = (v, cap, extra) => `<div class="feed"><div class="feed-top"><span class="av">IC</span>islandcrumbbakery</div><div class="media" style="background:${v.c}"><em>Reel · ${v.len}</em><span>&#9658;</span></div><div class="cap"><span><b>islandcrumbbakery</b> ${cap}</span><span class="cta">Link in bio · comment for the link</span></div>${extra || ''}</div>`;
+  const shopScreen = (note) => `<div class="shop-head"><b>Island Crumb Bakery</b><span style="font-size:13px;opacity:.9">Order by 2pm for same-day pickup</span></div><div class="grid2">${prod('Coconut sweetbread', '25.00', '#F2D9B8', ' · 2 in cart')}${prod('Black cake', '40.00', '#5B3A2E', ' · 1 in cart')}${prod('Salt bread (6)', '9.00', '#F6EBD9')}${prod('Cassava pone', '15.00', '#E8C27A')}</div>${note || ''}<div class="cartbar"><span><b>3 items</b> · $90.00</span><span class="cta">Order on WhatsApp</span></div>`;
+  const paidScreen = (code, amt, extra) => ic(`${me('Pickup Saturday')}${them(`<img src="img/receipt.jpg" alt="Till-style receipt for order ${code}" style="width:84px;border-radius:6px;border:1px solid #DDE3E0;margin-bottom:6px">Payment received for order ${code}: BBD $${amt}. Thank you! Here’s your receipt.`)}<div class="paid-badge">${extra || 'Paid · receipt sent · stock updated'}</div>`);
+  const payScreen = (code, amt) => `<div class="pay"><span style="color:#64716C">Pay Island Crumb Bakery</span><span class="amt">BBD $${amt}</span><span style="color:#64716C;font-size:13px">Reference ${code}</span><div class="field">Card number</div><div class="field">MM / YY &nbsp; · &nbsp; CVC</div><div class="paybtn">Pay BBD $${amt}</div><span style="font-size:12px;color:#64716C">Illustration of the payment step.</span></div>`;
+
+  const SCEN = [
+    { tab: 'WhatsApp order', labels: ['orders paid today', 'BBD paid today', 'black cakes left'], steps: [
+      { title: '1. Browse.', text: 'Tara opens the shop site from Instagram and fills a cart.', screen: () => shopScreen(), tiles: ['13', '$1,170', '4'],
+        log: ['Served the catalog from one product list', 'Saved the cart in case she leaves'] },
+      { title: '2. Order.', text: 'One tap opens WhatsApp with her order code already typed.', screen: () => ic(me('Hi! I’d like to place order IC-1048')), tiles: ['13', '$1,170', '4'],
+        log: ['Checked prices and stock against the database', 'Created order IC-1048 and opened WhatsApp'] },
+      { title: '3. Confirm.', text: 'The bot replies in seconds with the summary and a secure payment link.', screen: () => ic(me('Hi! I’d like to place order IC-1048') + them(summary + payl('90.00')) + them('Reply PICKUP or DELIVERY')), tiles: ['13', '$1,170', '4'],
+        log: ['Linked Tara’s number to her customer record', 'Built a signed payment link for BBD $90.00'] },
+      { title: '4. Pay.', text: 'She pays by card on the secure payment page (Fygaro). Money goes straight to the bakery.', screen: () => payScreen('IC-1048', '90.00'), tiles: ['13', '$1,170', '4'],
+        log: ['Waited for the signed payment notice'] },
+      { title: '5. Paid.', text: 'ZDM ChatCart marks it paid and sends a till-style receipt image. No screenshot to check.', screen: () => paidScreen('IC-1048', '90.00'), tiles: ['14', '$1,260', '3'], flash: true,
+        log: ['Verified the payment signature and amount', 'Marked IC-1048 paid and lowered stock', 'Sent the receipt image on WhatsApp'] },
+    ] },
+    { tab: 'Monthly videos', labels: ['videos ready', 'chosen by owner', 'orders from videos'], steps: [
+      { title: '1. Shoot day.', text: 'A ZDMINC videographer films the bakery for half a day, following a shot list built from the catalog.', tiles: ['0', '0', '0'],
+        screen: () => studio('Shot list · 28 Oct', `<div class="up"><b>&#10003; Black cake slice, close-up</b></div><div class="up"><b>&#10003; Sweetbread out of the oven</b></div><div class="up"><b>&#10003; Owner talks about coconut</b></div><div class="up"><b>&#9744; Counter at opening</b></div><div class="up" style="background:#5B3A2E;color:#fff;height:150px;display:grid;place-items:center"><span><span style="color:#F2A48F">&#9679;</span> REC 00:14</span></div>`),
+        log: ['Built the shot list from this month’s products and specials'] },
+      { title: '2. Team uploads.', text: 'The editor uploads the finished videos. Length, product and caption are filled in automatically.', tiles: ['10', '0', '0'],
+        screen: () => studio('Upload · Island Crumb', V.slice(0, 4).map((v, i) => `<div class="up"><span style="display:flex;justify-content:space-between"><b>${v.t}</b><span>${v.len}</span></span><span class="barx"><i style="width:${[100, 100, 100, 64][i]}%"></i></span></div>`).join('') + '<div class="up" style="background:var(--teal);color:#fff;text-align:center"><b>Publish 10 videos and notify client</b></div>'),
+        log: ['Cut and captioned 10 videos (6s, 15s, 30s)', 'Tagged each with its product and price'] },
+      { title: '3. Owner notified.', text: 'The owner gets a WhatsApp message: this month’s videos are ready to choose.', tiles: ['10', '0', '0'],
+        screen: () => cc(them('<b>Your November videos are ready</b><br>10 videos from the 28 Oct shoot. Pick the ones you want posted.') + them('<div class="paylink" style="background:var(--teal)"><span>Choose videos</span><span>&#8250;</span></div>')),
+        log: ['Sent the owner a WhatsApp nudge', 'Will remind them in 5 days if they haven’t chosen'] },
+      { title: '4. Owner chooses.', text: 'On their phone, the owner plays each video and taps Use or Skip.', tiles: ['10', '4', '0'],
+        screen: () => studio('November videos', '<div style="display:flex;justify-content:space-between"><b>4 of 10 chosen</b><span style="color:var(--coral);font-weight:700">Send to calendar</span></div>' + vcards(['u', 'u', 's', 'u', 's', 'u']), 'Owner'),
+        log: ['Saved 4 picks; skipped ones stay in the library'] },
+      { title: '5. Auto-scheduled.', text: 'Chosen videos drop into the posting calendar on the best days, each with its own order code.', tiles: ['10', '4', '0'],
+        screen: () => studio('Posting calendar', `<div class="cal">${[['Mon', 0, 'Reel'], ['Wed', 1, 'Reel'], ['Fri', 5, 'Reel'], ['Sat', 3, 'Story']].map(([d, i, k]) => `<div><b>${d}</b><i style="background:${V[i].c}"></i><span>${V[i].t}<br><small style="color:#64716C">${k} · code V-${i + 1}</small></span></div>`).join('')}</div>`, 'Owner'),
+        log: ['Scheduled 3 Reels and a Story to Instagram', 'Gave each video its own short link, like islandcrumb.com/cake'] },
+      { title: '6. Posted.', text: 'The video goes live on their social page. Buyers comment for the link or tap the link in bio.', tiles: ['10', '4', '6'],
+        screen: () => post(V[0], 'Fruit soaked since summer. Black cake, BBD $40. Order by Friday for the weekend.', '<div class="cmt"><b>marcia.b</b> need one for Sunday!</div><div class="cmt"><b>dre_246</b> ordered &#10003;</div>'),
+        log: ['Published on schedule, no one had to be online', 'Counting orders that come in with code V-1'] },
+      { title: '7. See what sells.', text: 'Every order is traced back to the video that brought it in, so next month’s shoot gets smarter.', tiles: ['10', '4', '27'], flash: true,
+        screen: () => studio('Which videos sold', `<div class="rank">${[[0, 14, 560], [1, 9, 225], [2, 4, 160]].map(([i, n, m]) => `<div><i style="background:${V[i].c}"></i><span><b>${V[i].t}</b><div class="w" style="width:${n / 14 * 100}%"></div></span><span style="text-align:right"><b>${n} orders</b><br><small>BBD $${m}</small></span></div>`).join('')}</div><div class="up"><b>Next shoot:</b> more 6s close-ups of cakes</div>`, 'Owner + team'),
+        log: ['Matched 27 paid orders to their videos', 'Suggested more 6-second cake close-ups next month'] },
+    ] },
+    { tab: 'Cart recovery', labels: ['carts left this week', 'recovered', 'BBD won back'], steps: [
+      { title: '1. Cart left.', text: 'Renee fills a cart, ticks “save my cart to WhatsApp”, then gets distracted.', tiles: ['5', '3', '$190'],
+        screen: () => shopScreen('<div style="background:#FFF6E5;padding:10px 14px;font-size:13px">&#9745; Save my cart and remind me on WhatsApp</div>'),
+        log: ['Saved the cart with her opt-in', 'Held the stock for 24 hours'] },
+      { title: '2. One hour later.', text: 'A friendly reminder arrives with the same payment link.', tiles: ['6', '3', '$190'],
+        screen: () => ic('<div class="notice">1 hour later</div>' + them('Hi Renee! Your order IC-1051 is saved: 2 sweetbread, 1 black cake. Pay here when you’re ready.' + payl('90.00'))),
+        log: ['Sent reminder 1 of 3 (approved template)'] },
+      { title: '3. Next day.', text: 'She has a question. The owner answers in the same chat.', tiles: ['6', '3', '$190'],
+        screen: () => ic('<div class="notice">24 hours later</div>' + them('Still want your bakes? Any questions about pickup or delivery?') + me('Can I collect Sunday instead?') + them('Yes! Sunday 8am to 12. Your link is still good.')),
+        log: ['Sent reminder 2 of 3', 'Flagged the reply for the owner'] },
+      { title: '4. Recovered.', text: 'She pays. Reminders stop on their own and the sale counts as recovered.', tiles: ['6', '4', '$280'], flash: true,
+        screen: () => ic(me('Done, just paid') + them('Payment received for IC-1051: BBD $90.00. See you Sunday!') + '<div class="paid-badge">Recovered · reminders stopped</div>'),
+        log: ['Fygaro confirmed the payment', 'Cancelled the 72-hour reminder', 'Logged BBD $90 as recovered'] },
+    ] },
+    { tab: 'Comment CAKE', labels: ['comments answered', 'orders from Instagram', 'BBD from Instagram'], steps: [
+      { title: '1. A post goes live.', text: 'The caption says: comment CAKE and we’ll DM you the order link. Tara comments CAKE.', tiles: ['31', '7', '$385'],
+        screen: () => post(V[0], 'Black cake season is here. Comment CAKE and we’ll DM you the order link.', '<div class="cmt hi"><b>tara.best</b> CAKE</div>'),
+        log: ['Instagram told ZDM ChatCart about the new comment', 'Matched the keyword CAKE for this post'] },
+      { title: '2. Reply and DM.', text: 'In seconds the shop replies under her comment, and a DM arrives with a tappable link. Links in comments aren’t clickable on Instagram, so the link goes by DM.', tiles: ['32', '7', '$385'],
+        screen: () => `<div class="feed"><div class="feed-top"><span class="av">IC</span>islandcrumbbakery</div><div class="cap"><span><b>islandcrumbbakery</b> Black cake season is here. Comment CAKE and we’ll DM you the order link.</span></div><div class="cmt hi"><b>tara.best</b> CAKE</div><div class="cmt" style="padding-left:24px"><b>islandcrumbbakery</b> @tara.best Sent! Check your DMs for the link</div></div><div class="chat">` + them('<span style="font-size:12px;opacity:.75">Instagram message from islandcrumbbakery</span><br>Hi Tara! Here’s your link to order black cake: <u><b>islandcrumb.com/cake</b></u>') + '</div>',
+        log: ['Replied publicly under the comment', 'Sent one private reply with the CAKE link', 'Won’t DM her again for CAKE for 7 days'] },
+      { title: '3. Shop, then WhatsApp.', text: 'The link opens the bakery’s own domain. She fills a cart and taps Order on WhatsApp.', tiles: ['32', '7', '$385'],
+        screen: () => ic(me('Hi! Order IC-1061 please') + them('<b>Order IC-1061</b><br>1 x Black cake<br><b>Total BBD $40.00</b>' + payl('40.00'))),
+        log: ['Counted a click on islandcrumb.com/cake', 'Created order IC-1061, tagged IG-CAKE'] },
+      { title: '4. Paid and traced.', text: 'The sale is credited to the CAKE keyword in the owner’s dashboard.', tiles: ['32', '8', '$425'], flash: true,
+        screen: () => paidScreen('IC-1061', '40.00', 'Paid · credited to Comment CAKE'),
+        log: ['Marked paid and sent the receipt image', 'Credited BBD $40 to the CAKE auto-reply'] },
+    ] },
+    { tab: 'Weekly posts', labels: ['posts this week', 'orders from posts', 'minutes owner spent'], steps: [
+      { title: '1. Monday.', text: 'ZDM ChatCart sends the owner the week’s posts, made from the catalog and chosen videos.', tiles: ['0', '0', '0'],
+        screen: () => cc(them('<b>Your posts for 10 to 16 Nov are ready</b><br>#1 Mon Reel: Slicing the black cake<br>#2 Wed post: Sweetbread, $25<br>#3 Fri Reel: Weekend specials<br>#4 Sat story: Only 3 black cakes left') + '<div style="display:flex;gap:8px"><span class="paid-badge" style="align-self:auto">Approve all</span><span class="paid-badge" style="align-self:auto;background:#fff;color:var(--teal);border:2px solid var(--teal)">Preview</span></div>'),
+        log: ['Wrote captions in the owner’s voice', 'Pulled prices and stock from the catalog'] },
+      { title: '2. Quick change.', text: 'The owner fixes a price by just replying.', tiles: ['0', '0', '1'],
+        screen: () => cc(me('Change #2 price to $28') + them('Done. Post #2 now shows BBD $28.00. Approve the week?') + me('Approve all')),
+        log: ['Updated post #2 and the catalog price'] },
+      { title: '3. Scheduled.', text: 'Everything is queued for the best times. Nothing posts without the owner’s yes.', tiles: ['5', '0', '2'],
+        screen: () => cc(me('Approve all') + them('Scheduled: 2 posts, 2 Reels and 1 story. Each has its own Order on WhatsApp code.')),
+        log: ['Queued 5 items to Instagram'] },
+      { title: '4. Friday results.', text: 'A short summary shows what the week’s posts sold.', tiles: ['5', '9', '2'], flash: true,
+        screen: () => cc(them('<b>This week</b><br>9 orders from your posts, BBD $410<br>Best: Slicing the black cake (5 orders)<br>4 carts recovered, BBD $160<br><br>Next week’s posts arrive Monday.')),
+        log: ['Matched orders to posts', 'Sent the weekly summary'] },
+    ] },
+  ];
+
+  let scen = 0, cur = 0, timer = null;
+  const bar = $('stepbar');
+  function buildBar() {
+    bar.innerHTML = '';
+    SCEN[scen].steps.forEach((s, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.setAttribute('aria-label', 'Go to step ' + (i + 1));
+      b.addEventListener('click', () => { stop(); go(i); });
+      bar.appendChild(b);
+    });
+  }
+  function go(i) {
+    const S = SCEN[scen], steps = S.steps;
+    cur = i;
+    const s = steps[i];
+    $('screen').innerHTML = s.screen();
+    $('stepTitle').textContent = s.title;
+    $('stepText').textContent = s.text;
+    [...bar.children].forEach((b, n) => { b.classList.toggle('done', n < i); if (n === i) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); });
+    const log = $('log');
+    log.innerHTML = '';
+    steps.slice(0, i + 1).forEach((st, n) => st.log.forEach((l) => { const li = document.createElement('li'); li.textContent = l; if (n === i) li.className = 'new'; log.appendChild(li); }));
+    [1, 2, 3].forEach((k) => { $('v' + k).textContent = s.tiles[k - 1]; $('l' + k).textContent = S.labels[k - 1]; const el = $('t' + k); el.classList.remove('flash'); if (s.flash) { void el.offsetWidth; el.classList.add('flash'); } });
+    $('next').textContent = i === steps.length - 1 ? 'See it again' : 'Next step';
+  }
+  function stop() { if (timer) { clearInterval(timer); timer = null; $('play').textContent = 'Play'; } }
+  function pickScen(k) {
+    stop(); scen = k;
+    [...$('scenTabs').children].forEach((b, n) => { b.setAttribute('aria-selected', n === k ? 'true' : 'false'); b.tabIndex = n === k ? 0 : -1; });
+    buildBar(); go(0);
+  }
+  SCEN.forEach((S, k) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.setAttribute('role', 'tab'); b.textContent = S.tab;
+    b.addEventListener('click', () => pickScen(k));
+    b.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); pickScen((k + 1) % SCEN.length); $('scenTabs').children[scen].focus(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); pickScen((k - 1 + SCEN.length) % SCEN.length); $('scenTabs').children[scen].focus(); }
+    });
+    $('scenTabs').appendChild(b);
+  });
+  $('next').addEventListener('click', () => { stop(); go((cur + 1) % SCEN[scen].steps.length); });
+  $('restart').addEventListener('click', () => { stop(); go(0); });
+  $('play').addEventListener('click', () => {
+    if (timer) { stop(); return; }
+    if (cur === SCEN[scen].steps.length - 1) go(0);
+    $('play').textContent = 'Pause';
+    timer = setInterval(() => { if (cur >= SCEN[scen].steps.length - 1) { stop(); return; } go(cur + 1); }, 2800);
+  });
+  pickScen(0);
+
+  /* ---------- Generic tab builder ---------- */
+  function tabs(listEl, panelEl, items, render, cls) {
+    items.forEach((it, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = cls || 'chip'; b.setAttribute('role', 'tab'); b.id = listEl.id + '-' + i;
+      b.innerHTML = it.tab;
+      b.addEventListener('click', () => select(i));
+      b.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); select((i + 1) % items.length, true); }
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); select((i - 1 + items.length) % items.length, true); }
+      });
+      listEl.appendChild(b);
+    });
+    function select(i, focus) {
+      [...listEl.children].forEach((b, n) => { b.setAttribute('aria-selected', n === i ? 'true' : 'false'); b.tabIndex = n === i ? 0 : -1; });
+      panelEl.setAttribute('aria-labelledby', listEl.id + '-' + i);
+      panelEl.innerHTML = render(items[i]);
+      if (focus) listEl.children[i].focus();
+    }
+    select(0);
+  }
+
+  /* ---------- The loop ---------- */
+  tabs($('loopTabs'), $('loopPanel'), [
+    { tab: '1 Create', img: 'sk-create', h: 'A month of content from one shoot', pts: ['A ZDMINC videographer films the business once a month', 'AI cuts the footage into 6, 15 and 30 second videos', 'Product posts are made from the catalog, with prices', 'The owner picks what to post, in WhatsApp'] },
+    { tab: '2 Attract', img: 'sk-attract', h: 'Posts and ads that lead straight to WhatsApp', pts: ['Posts, Reels and ads go out on a schedule the owner approved', 'Comment CAKE: the shop replies under the comment and DMs the link, automatically', 'Short links on the business’s own domain (islandcrumb.com/cake) count every click and sale'] },
+    { tab: '3 Order', img: 'sk-order', h: 'Browse on the website, order in the chat', pts: ['A clean shop page with cart, built from a template', 'Order on WhatsApp opens the chat with the code typed in', 'The bot confirms; a human can jump in any time'] },
+    { tab: '4 Pay', img: 'sk-pay', h: 'One secure link, exact total, confirmed automatically', pts: ['No bank details, no screenshots', 'Money goes straight to the business (payments by Fygaro)', 'A till-style receipt image arrives on WhatsApp', 'Unpaid carts get friendly reminders at 1 hour, 24 hours and 72 hours'] },
+    { tab: '5 Learn', img: 'sk-loop', h: 'One catalog keeps every channel in sync', pts: ['Stock and prices update everywhere at once', 'The owner sees which post, video, ad or keyword sold', 'The Today screen says what to sell more of, what to drop and when to post'] },
+  ], (it) => `<div class="sketch"><img src="img/${it.img}.jpg" alt="Hand-drawn sketch: ${it.h}" width="1200" height="675"></div><div class="story-text"><h3 style="font-size:30px">${it.h}</h3><ul>${it.pts.map((p) => `<li>${p}</li>`).join('')}</ul></div>`);
+
+  /* ---------- WhatsApp catalog explorer ---------- */
+  tabs($('waTabs'), $('waPanel'), [
+    { tab: 'Profile catalog', img: 'wa-1-profile', h: 'Catalog on the business profile', what: 'A shop icon in the chat header and product thumbnails on the business profile, grouped into collections such as Breads and Cakes.', when: 'Always there. Customers can browse without messaging first.' },
+    { tab: 'Catalog message', img: 'wa-2-catalogmessage', h: 'Catalog message', what: 'One bubble with a cover image and a View catalog button that opens everything.', when: 'The bot’s reply to “what do you have?”' },
+    { tab: 'Single product', img: 'wa-3-singleproduct', h: 'Single product and product page', what: 'One product card. Tapping it opens photos, description, price and Add to cart.', when: '“Is the black cake available?”' },
+    { tab: 'Product list', img: 'wa-4-multiproduct', h: 'Multi-product list', what: 'Up to 30 products in sections, each with an add button.', when: 'Today’s bakes, new arrivals, a category.' },
+    { tab: 'Cart', img: 'wa-5-cart', h: 'Cart and sent cart', what: 'Quantities, estimated total and Send to business. ZDM ChatCart turns the sent cart into an order code and a secure payment link.', when: 'The moment a customer is ready to buy.' },
+    { tab: 'Promotion', img: 'wa-6-template', h: 'Promotional catalog template', what: 'The business messages first with a set of products, such as weekend specials.', when: 'Weekly offers to opted-in customers. Needs a Meta-approved template and costs a small fee per message.' },
+  ], (it) => `<div class="frame"><img src="img/${it.img}.jpg" alt="WhatsApp screen illustration: ${it.h}" width="640" height="1385"></div><div class="explain"><h3 style="font-size:32px">${it.h}</h3><p class="lead">${it.what}</p><div class="when"><b>Use it for</b>${it.when}</div><p style="font-size:15px;color:var(--ink-soft)">Illustration. WhatsApp sets the layout and buttons; ZDM ChatCart fills the products and writes the messages. Payment always happens on the secure payment page (Fygaro), because in-chat payment isn’t available in the Caribbean.</p></div>`);
+
+  /* ---------- Product showcase ---------- */
+  tabs($('showTabs'), $('showPanel'), [
+    { tab: '<b>Today</b>Zero-guesswork insights', img: 'crm-today', cap: 'The owner’s home screen: what to scale, what to drop and when to post, worked out from real orders. Sales vs last week, what needs them, and where orders came from.' },
+    { tab: '<b>Inbox</b>Every WhatsApp chat in one place', img: 'crm-inbox', cap: 'Customers waiting for a reply rise to the top. The owner answers from the app; the bot hands over any time.' },
+    { tab: '<b>WhatsApp receipt</b>Paid, stamped, sent', img: 'receipt', cap: 'When a payment lands, the customer gets a till-style receipt image on WhatsApp: items, total, payment reference, PAID stamp and the order barcode.', tall: true },
+    { tab: '<b>Comment CAKE</b>Instagram comments into orders', img: 'ig-autoreply', cap: 'The client sets a keyword. Each matching comment gets a public reply and a DM with a link on the business’s own domain. Comments, DMs, clicks and sales are counted per keyword.', tall: true },
+    { tab: '<b>Ads</b>Approve, fund, track', img: 'crm-ads', cap: 'ZDMINC builds Instagram and Facebook ads from the best videos. The owner approves, pays from their own Meta account or an ad wallet, and sees spend, orders and return.' },
+    { tab: '<b>ZDMINC admin</b>Run every client', img: 'admin-client', cap: 'Plans, invoices and upgrades, support tickets, WhatsApp with owners, video uploads and ad results for every client, in one place.' },
+    { tab: '<b>Website</b>Shop page that sells', img: 'site-hero', cap: 'The public site walks visitors through the flow: tap Order on WhatsApp, the code is typed for them, a payment link arrives and the receipt follows.' },
+    { tab: '<b>Monthly video library</b>Pick the videos to post', img: 'videos-library', cap: 'Ten videos a month arrive ready. The owner taps Use or Skip, and chosen ones go into the posting calendar.' },
+  ], (it) => `<figure><img src="img/${it.img}.jpg" alt="${it.cap}" ${it.tall ? 'style="max-height:640px;margin:0 auto"' : ''}><figcaption>${it.cap}</figcaption></figure>`, ' ');
+
+  /* ---------- Economics ---------- */
+  const PLANS = [
+    { id: 'starter', name: 'Starter', price: 150, setup: 1500, n: 3, color: '#B9D3FF', note: 'Instagram + Facebook connected, 2 image posts a month, WhatsApp orders, payment links, CRM' },
+    { id: 'growth', name: 'Growth', price: 300, setup: 1500, n: 4, color: '#6FA6FF', note: '+ automation, cart recovery' },
+    { id: 'pro', name: 'Pro', price: 500, setup: 1500, n: 2, color: '#1D5FD1', note: '+ AI assistant, team inbox' },
+    { id: 'aio', name: 'All-in-One', price: 650, setup: 2500, n: 2, color: '#F2A48F', note: '+ marketing autopilot, retargeting ads' },
+    { id: 'gv', name: 'Growth + Video', price: 1200, setup: 1500, n: 1, color: '#E07A5F', note: '+ monthly shoot, 10 videos' },
+    { id: 'aiov', name: 'All-in-One + Video', price: 1450, setup: 2500, n: 1, color: '#C9472B', note: '+ monthly shoot, 10 videos' },
+  ];
+  const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US');
+  const plansEl = $('plans');
+  PLANS.forEach((p) => {
+    const row = document.createElement('div');
+    row.className = 'plan';
+    row.innerHTML = `<label for="r-${p.id}">${p.name} <span>BBD ${fmt(p.price)}/mo + ${fmt(p.setup)} setup · ${p.note}</span></label><input type="range" id="r-${p.id}" min="0" max="30" step="1" value="${p.n}"><output for="r-${p.id}" id="o-${p.id}">${p.n}</output>`;
+    plansEl.appendChild(row);
+    row.querySelector('input').addEventListener('input', (e) => { p.n = Number(e.target.value); calc(); });
+  });
+  function calc() {
+    let mrr = 0, setup = 0, count = 0;
+    PLANS.forEach((p) => { mrr += p.n * p.price; setup += p.n * p.setup; count += p.n; $('o-' + p.id).textContent = p.n; });
+    $('mrr').textContent = 'BBD ' + fmt(mrr);
+    $('arr').textContent = fmt(mrr * 12);
+    $('setup').textContent = fmt(setup);
+    $('clients').textContent = count;
+    $('avg').textContent = count ? fmt(mrr / count) : '$0';
+    $('mix').innerHTML = PLANS.map((p) => `<span style="width:${mrr ? (p.n * p.price / mrr * 100) : 0}%;background:${p.color}"></span>`).join('');
+    $('legend').innerHTML = PLANS.map((p) => `<span><i style="background:${p.color}"></i>${p.name} ${mrr ? Math.round(p.n * p.price / mrr * 100) : 0}%</span>`).join('');
+  }
+  calc();
+})();
+</script>
+</body>
+</html>
