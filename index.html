@@ -306,7 +306,7 @@ footer { padding: 28px 0; color: #9FC2C0; font-size: 14px; background: var(--ink
         <ul class="hero-list">
           <li><b>WhatsApp ordering</b>, so orders arrive in the chat they already use</li>
           <li><b>A shop website</b> where customers browse and pick products</li>
-          <li><b>Payment links</b> customers tap to pay by card (processed by Fygaro)</li>
+          <li><b>Payment links</b> customers tap to pay by card through a secure payment system</li>
           <li><b>Instagram comments turned into orders</b> automatically</li>
           <li><b>Fresh videos every month</b> to keep their feed active</li>
         </ul>
@@ -553,7 +553,7 @@ footer { padding: 28px 0; color: #9FC2C0; font-size: 14px; background: var(--ink
         log: ['Checked prices and stock against the database', 'Created order IC-1048 and opened WhatsApp'] },
       { title: '3. Confirm.', text: 'The bot replies in seconds with the summary and a secure payment link.', screen: () => ic(me('Hi! I’d like to place order IC-1048') + them(summary + payl('90.00')) + them('Reply PICKUP or DELIVERY')), tiles: ['13', '$1,170', '4'],
         log: ['Linked Tara’s number to her customer record', 'Built a signed payment link for BBD $90.00'] },
-      { title: '4. Pay.', text: 'She pays by card on the secure payment page (Fygaro). Money goes straight to the bakery.', screen: () => payScreen('IC-1048', '90.00'), tiles: ['13', '$1,170', '4'],
+      { title: '4. Pay.', text: 'She pays by card on the secure payment page. Money goes straight to the bakery.', screen: () => payScreen('IC-1048', '90.00'), tiles: ['13', '$1,170', '4'],
         log: ['Waited for the signed payment notice'] },
       { title: '5. Paid.', text: 'ZDM ChatCart marks it paid and sends a till-style receipt image. No screenshot to check.', screen: () => paidScreen('IC-1048', '90.00'), tiles: ['14', '$1,260', '3'], flash: true,
         log: ['Verified the payment signature and amount', 'Marked IC-1048 paid and lowered stock', 'Sent the receipt image on WhatsApp'] },
@@ -593,7 +593,7 @@ footer { padding: 28px 0; color: #9FC2C0; font-size: 14px; background: var(--ink
         log: ['Sent reminder 2 of 3', 'Flagged the reply for the owner'] },
       { title: '4. Recovered.', text: 'She pays. Reminders stop on their own and the sale counts as recovered.', tiles: ['6', '4', '$280'], flash: true,
         screen: () => ic(me('Done, just paid') + them('Payment received for IC-1051: BBD $90.00. See you Sunday!') + '<div class="paid-badge">Recovered · reminders stopped</div>'),
-        log: ['Fygaro confirmed the payment', 'Cancelled the 72-hour reminder', 'Logged BBD $90 as recovered'] },
+        log: ['The payment system confirmed the payment', 'Cancelled the 72-hour reminder', 'Logged BBD $90 as recovered'] },
     ] },
     { tab: 'Comment CAKE', labels: ['comments answered', 'orders from Instagram', 'BBD from Instagram'], steps: [
       { title: '1. A post goes live.', text: 'The caption says: comment CAKE and we’ll DM you the order link. Tara comments CAKE.', tiles: ['31', '7', '$385'],
